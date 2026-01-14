@@ -1,0 +1,55 @@
+{
+  "context": {
+    "id": "c2698d47-ec20-4109-b31c-91a764b14e9c",
+    "name": "flasharray1",
+    "resource_type": "remote-arrays"
+  },
+  "description": "SQL workload with 2 20GB data volumes, with snapshots every 4 hours, kept for 7 days.",
+  "id": "56acd7fc-9b56-4591-a25f-c071fd4d8243",
+  "name": "dc1:SQLdatavol",
+  "placement_configurations": [
+    {
+      "name": "default-placement",
+      "storage_class": {
+        "name": "flasharray-x",
+        "resource_type": "storage-classes"
+      }
+    }
+  ],
+  "platform_features": [
+    "fa_block"
+  ],
+  "revision": 1,
+  "snapshot_configurations": [
+    {
+      "name": "snap-4hours-7days",
+      "naming_patterns": [
+        {
+          "template": "4hours-7days"
+        }
+      ],
+      "policy_action": "create_or_reuse",
+      "rules": [
+        {
+          "every": "14400000",
+          "keep_for": "604800000"
+        }
+      ]
+    }
+  ],
+  "type": 43,
+  "volume_configurations": [
+    {
+      "count": "2",
+      "name": "datavol",
+      "placement_configurations": [
+        "default-placement"
+      ],
+      "provisioned_size": "21474836480",
+      "snapshot_configurations": [
+        "snap-4hours-7days"
+      ]
+    }
+  ],
+  "workload_type": "MsSQL"
+}
