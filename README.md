@@ -7,6 +7,13 @@ The purpose of this is to provide a centralized repository for Pure Fusion Prese
 
 These files are contributed by Pure employees, partners, and customers.
 
+## Downloading a Preset
+- Click on the preset file name and view the preset in the editor window. Check to see if it will help you in any of your use cases.
+- Click on the Download icon in the upper right of the editor window.
+- Save the file to your local drive and upload it to your fleet.
+
+- As an alternative, you could click in the editor window and use CTRL-A on your keyboard to select all. Then, open your text edit or IDE and paste the contents.
+
 ## Guidelines for submitting Presets:
 
 - All files submitted **should be in Presets JSON output format**. To download Presets from an array, follow the instructions in the FlashArray CLI guide for the following CLI command: 
