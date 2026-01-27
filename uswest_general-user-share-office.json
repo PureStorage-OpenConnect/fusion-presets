@@ -1,0 +1,166 @@
+{
+  "context": {
+    "id": "c2698d47-ec20-4109-b31c-91a764b14e9c",
+    "name": "flasharray1",
+    "resource_type": "remote-arrays"
+  },
+  "description": "User file shares for the  office",
+  "directory_configurations": [
+    {
+      "count": "1",
+      "exports": [
+        {
+          "export_configurations": {
+            "smb": "smb-policy-01"
+          },
+          "naming_patterns": [
+            {
+              "template": "{{functions.left(workload.name, 25)}}-{{functions.left(workload.configuration.name, 25)}}-{{functions.pad_left(workload.configuration.index, 4)}}"
+            }
+          ],
+          "servers": [
+            "_array_server"
+          ]
+        }
+      ],
+      "multi_protocol": {
+        "access_control_style": "shared",
+        "safeguard_acls": "true"
+      },
+      "name": "file-file-system-01",
+      "naming_patterns": [
+        {
+          "template": "{{functions.left(workload.name, 25)}}-{{functions.left(workload.configuration.name, 25)}}-{{functions.pad_left(workload.configuration.index, 4)}}"
+        }
+      ],
+      "path": {
+        "naming_patterns": [
+          {
+            "template": "/"
+          }
+        ]
+      },
+      "placement_configurations": [
+        "default-placement"
+      ],
+      "special_directories": {
+        "fast_remove": "false",
+        "snapshot": "true"
+      }
+    },
+    {
+      "count": "1",
+      "exports": [
+        {
+          "export_configurations": {
+            "nfs": "nfs-policy-01"
+          },
+          "naming_patterns": [
+            {
+              "template": "{{functions.left(workload.name, 25)}}-{{functions.left(workload.configuration.name, 25)}}-{{functions.pad_left(workload.configuration.index, 4)}}"
+            }
+          ],
+          "servers": [
+            "_array_server"
+          ]
+        }
+      ],
+      "multi_protocol": {
+        "access_control_style": "shared",
+        "safeguard_acls": "true"
+      },
+      "name": "nfs-fs-01",
+      "naming_patterns": [
+        {
+          "template": "{{functions.left(workload.name, 25)}}-{{functions.left(workload.configuration.name, 25)}}-{{functions.pad_left(workload.configuration.index, 4)}}"
+        }
+      ],
+      "path": {
+        "naming_patterns": [
+          {
+            "template": "/"
+          }
+        ]
+      },
+      "placement_configurations": [
+        "default-placement"
+      ],
+      "special_directories": {
+        "fast_remove": "false",
+        "snapshot": "true"
+      }
+    }
+  ],
+  "export_configurations": {
+    "nfs": [
+      {
+        "name": "nfs-policy-01",
+        "naming_patterns": [
+          {
+            "template": "nfs-policy-01"
+          }
+        ],
+        "policy_action": "create_or_reuse",
+        "policy_configuration": {
+          "rules": [
+            {
+              "access": "root-squash",
+              "atime": "true",
+              "client": "*",
+              "nfs_version": [
+                "nfsv3",
+                "nfsv4"
+              ],
+              "permission": "rw",
+              "secure": "false",
+              "security": [
+                "sys"
+              ]
+            }
+          ],
+          "user_mapping_enabled": "true"
+        }
+      }
+    ],
+    "smb": [
+      {
+        "name": "smb-policy-01",
+        "naming_patterns": [
+          {
+            "template": "smb-policy-01"
+          }
+        ],
+        "policy_action": "create_or_reuse",
+        "policy_configuration": {
+          "access_based_enumeration_enabled": "false",
+          "continuous_availability_enabled": "true",
+          "rules": [
+            {
+              "anonymous_access_allowed": "false",
+              "client": "*",
+              "encryption": "optional",
+              "permission": "rw"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "id": "d9e8077f-8d71-4d23-87f3-394affcd8d27",
+  "name": "uswest:general-user-share-office",
+  "placement_configurations": [
+    {
+      "name": "default-placement",
+      "storage_class": {
+        "name": "flashblade-s200",
+        "resource_type": "storage-classes"
+      }
+    }
+  ],
+  "platform_features": [
+    "fb_file"
+  ],
+  "revision": 2,
+  "type": 43,
+  "workload_type": "File"
+}
